@@ -5,12 +5,35 @@ import Vista.VistaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author Emiliano Contreras Gamboa
- */
+
+
+
+
 public class Controlador implements ActionListener {
+
+
+    //********************************** */
+    public List<Modelo> obtenerPacientes() throws SQLException {
+        List<Modelo> pacientes = new ArrayList<>();
+        //ResultSet resultSet asignar con funcion emiliano
+
+        while (resultSet.next()) {
+            String nombre = resultSet.getString("nombre");
+            String telefono = resultSet.getString("telefono");
+            Modelo paciente = new Modelo (nombre, telefono);
+            pacientes.add(paciente);
+        }
+        
+        //Convertir lista de pacientes a arreglo de dos dimensiones (Nombre, telefono).
+        return pacientes;
+    }
+    //*********************************** */
+
 
     private VistaPrincipal v_view;
     private Modelo m_modelo;
@@ -21,6 +44,7 @@ public class Controlador implements ActionListener {
         
         view.btnGuardar.addActionListener(this);
         view.btnLimpiar.addActionListener(this);
+        view.getBtnTabla().addActionListener(this);
     }
 
     public void iniciar(){
@@ -47,6 +71,10 @@ public class Controlador implements ActionListener {
         } else if (e.getSource() == v_view.btnLimpiar) {
             limpiarCampos();
         }
+        else {
+            v_view.getVentanConTabla().setDatosEnLaTabla(new Object[][] {});
+            v_view.getVentanConTabla().setVisible(true);
+        }
     }
 
     private boolean validarNombre(String nombre) {
@@ -61,4 +89,5 @@ public class Controlador implements ActionListener {
         v_view.txtNombre.setText("");
         v_view.txtTel.setText("");
     }
+
 }
