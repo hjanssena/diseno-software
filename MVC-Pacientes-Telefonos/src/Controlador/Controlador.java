@@ -5,12 +5,33 @@ import Vista.VistaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author Emiliano Contreras Gamboa
- */
+
+
+
+
 public class Controlador implements ActionListener {
+
+
+    //********************************** */
+    public List<Modelo> obtenerPacientes(ResultSet resultSet) throws SQLException {
+        List<Modelo> pacientes = new ArrayList<>();
+
+        while (resultSet.next()) {
+            String nombre = resultSet.getString("nombre");
+            String telefono = resultSet.getString("telefono");
+            Modelo paciente = new Modelo (nombre, telefono);
+            pacientes.add(paciente);
+        }
+
+        return pacientes;
+    }
+    //*********************************** */
+
 
     private VistaPrincipal v_view;
     private Modelo m_modelo;
@@ -61,4 +82,5 @@ public class Controlador implements ActionListener {
         v_view.txtNombre.setText("");
         v_view.txtTel.setText("");
     }
+
 }
