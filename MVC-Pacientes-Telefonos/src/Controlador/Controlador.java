@@ -44,6 +44,7 @@ public class Controlador implements ActionListener {
         
         view.btnGuardar.addActionListener(this);
         view.btnLimpiar.addActionListener(this);
+        view.getBtnTabla().addActionListener(this);
     }
 
     public void iniciar(){
@@ -69,6 +70,10 @@ public class Controlador implements ActionListener {
             }
         } else if (e.getSource() == v_view.btnLimpiar) {
             limpiarCampos();
+        }
+        else {
+            v_view.getVentanConTabla().setDatosEnLaTabla(new Object[][] {});
+            v_view.getVentanConTabla().setVisible(true);
         }
     }
 
