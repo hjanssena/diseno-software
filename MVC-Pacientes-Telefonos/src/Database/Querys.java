@@ -1,4 +1,4 @@
-package Modelo;
+package Database;
 
 import java.sql.*;
 
@@ -9,19 +9,13 @@ import java.sql.*;
  */
 public class Querys {
 
-    private Connection conexion;
-
-    public Querys(Connection conexion) {
-        this.conexion = conexion;
-    }
-
     // Método para ejecutar una consulta SELECT y devolver un ResultSet
-    public ResultSet hacerConsulta(String query) {
+    public ResultSet consultarListaPacientes() {
         Conexion con = new Conexion();
         ResultSet rs = null;
         try {
-            Statement stmt = conexion.createStatement();
-            rs = stmt.executeQuery(query); // Ejecutar la consulta
+            Statement stmt = con.getStatement();
+            rs = stmt.executeQuery("SELECT * FROM Pacientes"); // Ejecutar la consulta
         } catch (SQLException e) {
             e.printStackTrace();
         }

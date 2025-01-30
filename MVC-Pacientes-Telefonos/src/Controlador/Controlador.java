@@ -1,5 +1,7 @@
 package Controlador;
 
+import Database.Querys;
+import Database.Conexion;
 import Modelo.*;
 import Vista.*;
 import Vista.VistaPrincipal;
@@ -54,32 +56,16 @@ public class Controlador implements ActionListener {
     }
     
     /*
-    public List<Modelo> obtenerPacientes() throws SQLException {
-        List<Modelo> pacientes = new ArrayList<>();
-        //ResultSet resultSet asignar con funcion emiliano
-        Querys qr = new Querys(cn); 
-        ResultSet rs = qr.hacerConsulta("nombre, telefono");
-
-        try {
-            
-        while (rs.next()) {
-            String nombre = rs.getString("nombre");
-            String telefono = rs.getString("telefono");
-            Modelo paciente = new Modelo (nombre, telefono);
-            pacientes.add(paciente);
-        }
-        
-        return pacientes;
-    }
+    
     */
     
     
     //************************************ */
 
     private VistaPrincipal v_view;
-    private Modelo m_modelo;
+    private Paciente m_modelo;
 
-    public Controlador(VistaPrincipal view, Modelo modelo) {
+    public Controlador(VistaPrincipal view, Paciente modelo) {
         v_view = view;
         m_modelo = modelo;
         

@@ -1,7 +1,7 @@
 package MVC;
 
 import Controlador.Controlador;
-import Modelo.Modelo;
+import Modelo.Paciente;
 import Vista.VistaPrincipal;
 
 /**
@@ -11,7 +11,7 @@ import Vista.VistaPrincipal;
 public class mainMVC {
 
     public static void main(String[] args) {
-        Modelo modelo = new Modelo();
+        Paciente modelo = new Paciente();
         VistaPrincipal vista = new VistaPrincipal();
         Controlador controlador = new Controlador(vista, modelo);
         controlador.iniciar();
