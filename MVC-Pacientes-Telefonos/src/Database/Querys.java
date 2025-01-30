@@ -1,5 +1,6 @@
 package Database;
 
+import Modelo.Paciente;
 import java.sql.*;
 
 
@@ -21,5 +22,25 @@ public class Querys {
         }
         con.close();
         return rs;
+    }
+    
+    public void insertarNuevoPaciente(String nombre, String telefono){
+        Conexion con = new Conexion();
+        try{
+            Statement stmt = con.getStatement();
+            stmt.executeQuery(String.format(
+                    "INSERT INTO \"Pacientes\" (\"nombre\", \"telefono\") VALUES (\"%s\",\"%s\")", 
+                    nombre, telefono));
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void eliminarPaciente(int id){
+        
+    }
+    
+    public void actualizarPaciente(int id, String nombre, String telefono){
+        
     }
 }
