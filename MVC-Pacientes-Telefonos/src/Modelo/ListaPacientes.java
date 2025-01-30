@@ -36,6 +36,18 @@ public class ListaPacientes {
         return pacientes;
     }
     
+    public void insertarNuevoPaciente(Paciente paciente){
+        Querys querys = new Querys();
+        querys.insertarNuevoPaciente(paciente.getNombre(), paciente.getTelefono());
+    }
+    
+    public void eliminarPaciente(Paciente paciente){
+        Querys querys = new Querys();
+        querys.eliminarPaciente(paciente.getId());
+    }
+    
+    public void actualizarPaciente(Paciente paciente){
+        Querys querys = new Querys();
+       querys.actualizarPaciente(paciente.getId(), paciente.getNombre(), paciente.getTelefono());
+    }
 }
-
-
