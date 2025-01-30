@@ -37,6 +37,7 @@ public class Controlador implements ActionListener {
     }
 
     public Object[][] procesarDatos(ResultSet rs) {
+        
         ArrayList<String[]> datos = new ArrayList<>();
         try {
             while (rs.next()) {
@@ -68,7 +69,6 @@ public class Controlador implements ActionListener {
             pacientes.add(paciente);
         }
         
-        //Convertir lista de pacientes a arreglo de dos dimensiones (Nombre, telefono).
         return pacientes;
     }
     */

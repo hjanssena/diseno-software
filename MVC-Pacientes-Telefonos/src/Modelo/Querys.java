@@ -17,6 +17,7 @@ public class Querys {
 
     // Método para ejecutar una consulta SELECT y devolver un ResultSet
     public ResultSet hacerConsulta(String query) {
+        Conexion con = new Conexion();
         ResultSet rs = null;
         try {
             Statement stmt = conexion.createStatement();
@@ -24,7 +25,7 @@ public class Querys {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        con.close();
         return rs;
     }
-
 }

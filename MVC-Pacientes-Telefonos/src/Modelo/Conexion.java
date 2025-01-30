@@ -17,46 +17,21 @@ import java.sql.*;
  */
 public class Conexion {
     
-    public ArrayList<String> credenciales(){
-        ArrayList con = new ArrayList();
-        String dir = System.getProperty("user.dir");
-        try {
-            FileReader archivo = new FileReader( dir + "\\Credenciales.txt"); 
-            System.out.println(archivo);
-            BufferedReader scanner = new BufferedReader(archivo);
-            String linea;  
-            while ((linea = scanner.readLine())!= null) {          
-                String[] partes = linea.split(","); 
-                if (partes.length > 1) {
-                con.add(partes[1].trim());
-                }
-            }
-            scanner.close(); 
-        } catch (FileNotFoundException e) {
-            System.out.println("Error: Archivo no encontrado.");
-        } catch (IOException ex) {
-            
-        }
-        return con;
-    }
+    private Connection con;
     
-    public Connection conection() {
-        Connection conection = null;     
-        ArrayList con = credenciales();
-        String link = (String) con.get(0);
-        String user = (String) con.get(1);
-        String psw = (String) con.get(2);
+    public Conexion() {     
+        Credenciales credenciales = new Credenciales();
+        
         try{
-            conection = DriverManager.getConnection(link,user,psw);
+            con = DriverManager.getConnection(credenciales.getUrl(),credenciales.getUsr(),credenciales.getPass());
         }catch(SQLException e){
             System.out.println("Se cayo el sistema");
         }
-        return conection;
     }
     
-    public void close(Connection conection){
+    public void close(){
         try {
-            conection.close();
+            this.con.close();
         } catch (SQLException ex) {
             System.out.println("Se cerro");
         }
