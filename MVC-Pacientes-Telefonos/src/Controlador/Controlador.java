@@ -18,8 +18,9 @@ public class Controlador implements ActionListener {
 
 
     //********************************** */
-    public List<Modelo> obtenerPacientes(ResultSet resultSet) throws SQLException {
+    public List<Modelo> obtenerPacientes() throws SQLException {
         List<Modelo> pacientes = new ArrayList<>();
+        //ResultSet resultSet asignar con funcion emiliano
 
         while (resultSet.next()) {
             String nombre = resultSet.getString("nombre");
@@ -27,7 +28,8 @@ public class Controlador implements ActionListener {
             Modelo paciente = new Modelo (nombre, telefono);
             pacientes.add(paciente);
         }
-
+        
+        //Convertir lista de pacientes a arreglo de dos dimensiones (Nombre, telefono).
         return pacientes;
     }
     //*********************************** */
