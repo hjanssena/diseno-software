@@ -4,6 +4,7 @@ import Controlador.Controlador;
 import Modelo.Modelo;
 import Vista.VistaPrincipal;
 
+
 /**
  *
  * @author Emiliano Contreras Gamboa
@@ -14,7 +15,7 @@ public class mainMVC {
         Modelo modelo = new Modelo();
         VistaPrincipal vista = new VistaPrincipal();
         Controlador controlador = new Controlador(vista, modelo);
-
+          
         controlador.iniciar();
         vista.setVisible(true);
     }
