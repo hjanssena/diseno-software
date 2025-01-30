@@ -1,3 +1,0 @@
-URL, jdbc:postgresql://aws-0-us-west-1.pooler.supabase.com:6543/clinica
-USER, user.cfgxprrxkgdtmyqpjsff
-PASSWORD, user1234!
