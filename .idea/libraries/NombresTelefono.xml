@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="NombresTelefono">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/MVC-Pacientes-Telefonos/dist/NombresTelefono.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
