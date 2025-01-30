@@ -40,8 +40,9 @@ public class Conexion {
         return con;
     }
     
-    public Connection conection(ArrayList con) {
+    public Connection conection() {
         Connection conection = null;     
+        ArrayList con = credenciales();
         String link = (String) con.get(0);
         String user = (String) con.get(1);
         String psw = (String) con.get(2);
