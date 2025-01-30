@@ -20,3 +20,4 @@ public class mainMVC {
         vista.setVisible(true);
     }
 }
+
