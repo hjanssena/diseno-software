@@ -2,7 +2,9 @@ package MVC;
 
 import Controlador.Controlador;
 import Modelo.ListaPacientes;
+import Modelo.Paciente;
 import Vista.VistaPrincipal;
+import java.util.ArrayList;
 
 /**
  *

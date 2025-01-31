@@ -24,9 +24,10 @@ public class ListaPacientes {
         
         try {
             while (rs.next()) {
+                int id = rs.getInt("idPaciente");
                 String nombre = rs.getString("nombre");
                 String telefono = rs.getString("telefono");
-                Paciente paciente = new Paciente (nombre, telefono);
+                Paciente paciente = new Paciente (id, nombre, telefono);
                 pacientes.add(paciente);
             }
         } catch (SQLException ex) {

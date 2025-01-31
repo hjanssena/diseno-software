@@ -21,7 +21,7 @@ public class Conexion {
         try{
             con = DriverManager.getConnection(credenciales.getUrl(),credenciales.getUsr(),credenciales.getPass());
         }catch(SQLException e){
-            System.out.println("Se cayo el sistema");
+            e.getCause();
         }
     }
     
@@ -36,7 +36,7 @@ public class Conexion {
     public Statement getStatement(){
         Statement stmnt = null;
         try {
-            stmnt = con.createStatement();
+            stmnt = this.con.createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
