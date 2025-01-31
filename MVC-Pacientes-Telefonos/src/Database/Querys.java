@@ -3,6 +3,8 @@ package Database;
 import Modelo.Paciente;
 import java.sql.*;
 
+import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
+
 
 /**
  *
@@ -37,10 +39,25 @@ public class Querys {
     }
     
     public void eliminarPaciente(int id){
-        
+        Conexion con = new Conexion();
+        try{
+            Statement stmt = con.getStatement();
+            stmt.executeQuery(String.format(
+                    "DELETE FROM \"Pacientes\" WHERE \"id\" = %d", id));
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
     }
     
     public void actualizarPaciente(int id, String nombre, String telefono){
-        
+        Conexion con = new Conexion();
+        try{
+            Statement stmt = con.getStatement();
+            stmt.executeQuery(String.format(
+                    "UPDATE \"Pacientes\" SET \"nombre\" = \"%s\", \"telefono\" = \"%s\" WHERE \"id\" = %d", 
+                    nombre, telefono, id));
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 }
