@@ -1,10 +1,7 @@
 package Database;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,7 +25,7 @@ public class Credenciales {
         ArrayList con = new ArrayList();
         String dir = System.getProperty("user.dir");
         try {
-            Scanner scanner = new Scanner(new File(dir + "\\Credenciales.txt"));  
+            Scanner scanner = new Scanner(new File(dir + "\\src\\Database\\Credenciales.txt"));  
             while (scanner.hasNextLine()) {        
                 String linea = scanner.nextLine();
                 String[] partes = linea.split(","); 
