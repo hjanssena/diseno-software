@@ -1,15 +1,20 @@
 package Controlador;
 
-import Modelo.Modelo;
+import Database.Querys;
+import Database.Conexion;
+import Modelo.*;
+import Vista.*;
 import Vista.VistaPrincipal;
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.Statement;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.lang.String;
 
 
 
@@ -17,28 +22,50 @@ import java.util.List;
 public class Controlador implements ActionListener {
 
 
-    //********************************** */
-    public List<Modelo> obtenerPacientes() throws SQLException {
-        List<Modelo> pacientes = new ArrayList<>();
-        //ResultSet resultSet asignar con funcion emiliano
+    //************************************ */
+    
+    private Conexion conexion;
+    private Querys querys;
 
-        while (resultSet.next()) {
-            String nombre = resultSet.getString("nombre");
-            String telefono = resultSet.getString("telefono");
-            Modelo paciente = new Modelo (nombre, telefono);
-            pacientes.add(paciente);
-        }
-        
-        //Convertir lista de pacientes a arreglo de dos dimensiones (Nombre, telefono).
-        return pacientes;
+    public Controlador() {
+        this.conexion = new Conexion();
+        ArrayList<String> credenciales = conexion.credenciales();
+        Connection con = (Connection) conexion.conection(credenciales);
+        this.querys = new Querys((java.sql.Connection) con);
     }
-    //*********************************** */
 
+    public ResultSet obtenerDatos(String consulta) {
+        return querys.hacerConsulta(consulta);
+    }
+
+    public Object[][] procesarDatos(ResultSet rs) {
+        
+        ArrayList<String[]> datos = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                String[] fila = new String[rs.getMetaData().getColumnCount()];
+                for (int i = 0; i < fila.length; i++) {
+                    fila[i] = rs.getString(i + 1);
+                }
+                datos.add(fila);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return datos.toArray(new Object[0][]);
+    }
+    
+    /*
+    
+    */
+    
+    
+    //************************************ */
 
     private VistaPrincipal v_view;
-    private Modelo m_modelo;
+    private Paciente m_modelo;
 
-    public Controlador(VistaPrincipal view, Modelo modelo) {
+    public Controlador(VistaPrincipal view, Paciente modelo) {
         v_view = view;
         m_modelo = modelo;
         
@@ -89,5 +116,7 @@ public class Controlador implements ActionListener {
         v_view.txtNombre.setText("");
         v_view.txtTel.setText("");
     }
+    
+    //************************************** */
 
 }
